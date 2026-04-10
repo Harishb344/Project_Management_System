@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from corsheaders.defaults import default_headers
 
+
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "x-org-slug",
 ]
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oc842)*dz_^8qx7qx9u%grm8=jh7-66toj2sj=e(r0ql@ti^+1'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,7 +34,7 @@ DEBUG = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
