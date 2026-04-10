@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from corsheaders.defaults import default_headers
-
+from decouple import config
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "x-org-slug",
@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+DEBUG= config('DEBUG', cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,6 +55,7 @@ GRAPHENE = {
     "SCHEMA": "projectmgmt.schema.schema",  # points to our schema file
 }
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "projectmgmt.middleware.OrganizationMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
